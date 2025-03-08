@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+            background-image: url('https://www.maria.pt/wp-content/uploads/2021/12/Jos%C3%A9-Figueiras-entrevista.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #container {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: auto;
+        }
+
+        #counter {
+            font-size: 36px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        #text {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        #footer {
+            width: 100%;
+            padding: 15px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        #footer p {
+            margin: 5px;
+        }
+
+        @media (max-width: 600px) {
+            #container {
+                padding: 10px;
+            }
+
+            #counter {
+                font-size: 28px;
+            }
+
+            #text {
+                font-size: 16px;
+            }
+
+            #footer {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            #footer p {
+                margin: 5px 0;
+            }
+        }
+
+        .rain {
+            display: none;
+        }
+
+        @keyframes rain {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        #innocence-day {
+            display: none;
+            font-size: 100px;
+            color: black;
+            margin-bottom: 10px;
+        }
+    </style>
+    <title>José Figueiras > Espanha Inteira</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="innocence-day">Innocence Day!</div>
+        <div id="counter">Calculando...</div>
+        <p id="text">E o José Figueiras continua a não ser culpado do 11 de Setembro</p>
+    </div>
+
+    <div id="footer">
+        <p>Rio Tinto: 14:03</p>
+        <p>Nova York: 09:03</p>
+        <p>Toquio: 02:03</p>
+        <p>Sydney: 23:03</p>
+    </div>
+
+    <script>
+        const targetDate = new Date('2001-09-11T14:03:00');
+
+        function updateCounter() {
+            const currentDate = new Date();
+            const timeDifference = currentDate - targetDate;
+            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hoursPassed = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutesPassed = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const secondsPassed = Math.floor((timeDifference % (1000 * 60)) / 1000);
+            document.getElementById('counter').textContent = `Passaram ${daysPassed} dias, ${hoursPassed} horas, ${minutesPassed} minutos e ${secondsPassed} segundos`;
+
+            if (currentDate.getMonth() === 9 && currentDate.getDate() === 11) {
+                document.getElementById('innocence-day').style.display = 'block';
+            } else {
+                document.getElementById('innocence-day').style.display = 'none';
+            }
+        }
+
+        // Call updateCounter initially
+        updateCounter();
+
+        // Call updateCounter every second (1000 milliseconds)
+        setInterval(updateCounter, 1000); // Atualiza a cada segundo
+    </script>
+</body>
+
+</html>
